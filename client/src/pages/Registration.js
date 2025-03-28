@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./AuthForm.css"; // ✅ Shared styling
-
+import "./AuthForm.css";
 function Register() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./AuthForm.css"; // ✅ Reuse shared styles
+import "./AuthForm.css";
 
 function Login() {
     const [email, setEmail] = useState("");

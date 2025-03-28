@@ -83,15 +83,44 @@ function UserDashboard() {
             <h2>My Tasks</h2>
 
             <form className="task-form" onSubmit={handleSubmit}>
-                <input name="title" placeholder="Title" value={formData.title} onChange={handleInputChange} required />
-                <input name="description" placeholder="Description" value={formData.description} onChange={handleInputChange} />
-                <input type="date" name="dueDate" value={formData.dueDate} onChange={handleInputChange} />
+                <input
+                    name="title"
+                    placeholder="Title"
+                    value={formData.title}
+                    onChange={handleInputChange}
+                    required
+                />
+                <input
+                    name="description"
+                    placeholder="Description"
+                    value={formData.description}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="date"
+                    name="dueDate"
+                    value={formData.dueDate}
+                    min={new Date().toISOString().split("T")[0]}
+                    onChange={handleInputChange}
+                />
                 <select name="priority" value={formData.priority} onChange={handleInputChange}>
                     <option>Low</option>
                     <option>Medium</option>
                     <option>High</option>
                 </select>
-                <input name="category" placeholder="Category" value={formData.category} onChange={handleInputChange} />
+                <select
+                    name="category"
+                    value={formData.category}
+                    onChange={handleInputChange}
+                    required
+                >
+                    <option value="">Select Category</option>
+                    <option value="Work">Work</option>
+                    <option value="Study">Study</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Other">Other</option>
+                </select>
                 <button type="submit">Add Task</button>
             </form>
 
@@ -102,7 +131,16 @@ function UserDashboard() {
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
                 </select>
-                <input placeholder="Category" onChange={(e) => setFilter({ ...filter, category: e.target.value })} />
+
+                <select onChange={(e) => setFilter({ ...filter, category: e.target.value })}>
+                    <option value="">All Categories</option>
+                    <option value="Work">Work</option>
+                    <option value="Study">Study</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Other">Other</option>
+                </select>
+
                 <select onChange={(e) => setFilter({ ...filter, sortBy: e.target.value })}>
                     <option value="">Sort by</option>
                     <option value="dueDate">Due Date</option>
