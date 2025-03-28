@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./AuthForm.css"; // ✅ Shared styling
 
 function Register() {
     const [username, setUsername] = useState("");
@@ -14,37 +15,40 @@ function Register() {
                 email,
                 password
             });
-            alert("Registration successful!");
+            alert("Registration successful! Please check your email.");
         } catch (err) {
             alert(err.response?.data || "Registration failed");
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-            />
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
-            <button type="submit">Register</button>
-        </form>
+        <div className="auth-container">
+            <form onSubmit={handleSubmit} className="auth-form">
+                <h2>Register</h2>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button type="submit">Register</button>
+            </form>
+        </div>
     );
 }
 

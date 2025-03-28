@@ -7,6 +7,8 @@ const nodemailer = require("nodemailer");
 
 const bcrypt = require("bcryptjs");
 
+
+
 // Simplified User Model (remove verification fields)
 /*
 const userSchema = new mongoose.Schema({
@@ -38,7 +40,27 @@ router.post("/register", async (req, res) => {
 
         await user.save();
 
-        // ✅ Optional: send verification email here
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
+            }
+        });
+
+        const verifyUrl = `http://localhost:5000/api/auth/verify/${verificationToken}`;
+
+        await transporter.sendMail({
+            from: `"Task Manager" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: "Verify your email",
+            html: `
+        <h2>Hello ${username},</h2>
+        <p>Click the link below to verify your email:</p>
+        <a href="${verifyUrl}">${verifyUrl}</a>
+    `
+        });
+
 
         res.status(201).json("Verification email sent!");
     } catch (err) {

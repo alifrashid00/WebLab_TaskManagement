@@ -1,0 +1,33 @@
+.admin-dashboard {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.admin-dashboard h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-table th, .user-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.user-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.user-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
